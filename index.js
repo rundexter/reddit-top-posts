@@ -14,7 +14,7 @@ module.exports = {
         var access_token   = provider.credentials( 'access_token' );
 
         var api_base = 'https://oauth.reddit.com/api/v1';
-        var user_agent = 'Dexter:' + dexter.app( 'id' ) + ':' + step.module.package.version + ' (by /u/friedo)';
+        var user_agent = 'Dexter:' + dexter.app( 'id' ) + ':' + step.module( 'package' ).version + ' (by /u/friedo)';
 
         var options = {
             url:     api_base + '/me',
