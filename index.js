@@ -8,7 +8,7 @@ module.exports = {
      * @param {AppData} dexter Container for all data used in this workflow.
      */
     run: function(step, dexter) {
-        var credentials    = dexter.provider( 'reddit' );
+        var provider       = dexter.provider( 'reddit' );
         var client_id      = provider.credentials( 'client_id' );
         var client_secret  = provider.credentials( 'client_secret' );
         var access_token   = provider.credentials( 'access_token' );
