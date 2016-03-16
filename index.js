@@ -13,10 +13,22 @@ module.exports = {
         var client_secret  = provider.credentials( 'client_secret' );
         var access_token   = provider.credentials( 'access_token' );
 
-        this.log( 'id = ' + client_id );
-        this.log( 'secret = ' + client_secret );
-        this.log( 'token = ' + access_token );
+        var api_base = 'https://oauth.reddit.com/api/v1';
+        var user_agent = 'Dexter:' + dexter.app( 'id' ) + ':' + step.module.package.version + ' (by /u/friedo)';
 
-        return this.complete( { foo: 1 } );
+        var options = {
+            url:     api_base + '/me',
+            headers: {
+                'User-Agent': user_agent
+            },
+            auth: {
+                bearer: access_token
+            }
+        }
+
+        request.get( api_base + '/me', options, function( err, res, body ) {
+            if ( err ) return this.fail( err );
+            return this.complete( JSON.parse( body ) );
+        } );
     }
 };
