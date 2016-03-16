@@ -9,15 +9,28 @@ module.exports = {
      */
     run: function(step, dexter) {
         var provider       = dexter.provider( 'reddit' );
-        var client_id      = provider.credentials( 'client_id' );
-        var client_secret  = provider.credentials( 'client_secret' );
         var access_token   = provider.credentials( 'access_token' );
 
-        var api_base = 'https://oauth.reddit.com/api/v1';
-        var user_agent = 'Dexter:' + dexter.app( 'id' ) + ':' + step.module( 'package' ).version + ' (by /u/friedo)';
+        var input = function( name ) {
+            return step.input( name ).first();
+        }
+
+        var subreddit      = input( 'subreddit' );
+        var args = {
+             t:       input( 't' ),
+             before:  input( 'before' ),
+             after:   input( 'after' ),
+             count:   input( 'count' ),
+             limit:   input( 'limit' ),
+             show:    input( 'show' )
+        };
+
+        var api_base = 'https://oauth.reddit.com/';
+        var user_agent = 'Dexter:' + dexter.app( 'id' ) + ':v0.0.1' + ' (by /u/friedo4)';
 
         var options = {
-            url:     api_base + '/me',
+            url:     api_base + '/r/' + subreddit + '/top',
+            qs:      args,
             headers: {
                 'User-Agent': user_agent
             },
@@ -26,9 +39,10 @@ module.exports = {
             }
         }
 
-        request.get( api_base + '/me', options, function( err, res, body ) {
-            if ( err ) return this.fail( err );
-            return this.complete( JSON.parse( body ) );
+        var self = this;
+        request.get( options, function( err, res, body ) {
+            if ( err ) return self.fail( { 'error': err, 'body': body } );
+            return self.complete( JSON.parse( body ) );
         } );
     }
 };

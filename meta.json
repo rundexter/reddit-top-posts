@@ -41,7 +41,7 @@
     "providers": [
         {
             "name": "reddit",
-            "scopes": [ "read" ]
+            "scopes": [ "read", "identity" ]
         }
     ],
     "icon": "reddit",
