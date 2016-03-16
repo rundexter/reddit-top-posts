@@ -2,25 +2,49 @@
  * Metadata describing the module operation
  */
 {
-    //Required. Inputs the module expects.
     "inputs": [
-        //e.g.
-        /*
         {
-            "id": "from",
-            "title":"From"
+            "id": "subreddit",
+            "title":"Subreddit"
+        },
+        {
+            "id": "t",
+            "title": "Time range"
+        },
+        {
+            "id": "after",
+            "title": "After"
+        },
+        {
+            "id": "before",
+            "title": "Before"
+        },
+        {
+            "id": "count",
+            "title": "Count"
+        },
+        {
+            "id": "limit",
+            "title": "Limit"
+        },
+        {
+            "id": "show",
+            "title": "Show"
+        },
+        {
+            "id": "sr_detail",
+            "title": "Expand subreddits"
         }
-        */
     ],
-    //Required. Outputs the module emits.
     "outputs": [
-      //e.g.
-      /*
-        {
-            "id": "from",
-            "title":"From"
-        }
-      */
     ],
-    "title": "Reddit top posts" /* Required.A display name for the module */
+    "providers": [
+        {
+            "name": "reddit",
+            "scopes": [ "read" ]
+        }
+    ],
+    "icon": "reddit",
+    "title": "Reddit top posts"
+
 }
