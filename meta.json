@@ -37,6 +37,42 @@
         }
     ],
     "outputs": [
+        {
+            "id": "id",
+            "title": "ID"
+        },
+        {
+            "id": "author",
+            "title": "Author"
+        },
+        {
+            "id": "created_utc",
+            "title": "Created"
+        },
+        {
+            "id": "domain",
+            "title": "Domain"
+        },
+        {
+            "id": "permalink",
+            "title": "Link"
+        },
+        {
+            "id": "score",
+            "title": "Score"
+        },
+        {
+            "id": "title",
+            "title": "Title"
+        },
+        {
+            "id": "selftext",
+            "title": "Text"
+        },
+        {
+            "id": "url",
+            "title": "URL"
+        }
     ],
     "providers": [
         {

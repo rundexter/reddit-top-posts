@@ -11,6 +11,8 @@ module.exports = {
         var provider       = dexter.provider( 'reddit' );
         var access_token   = provider.credentials( 'access_token' );
 
+        /* this.log( 'token = ' + access_token ); */
+
         var input = function( name ) {
             return step.input( name ).first();
         }
@@ -41,8 +43,24 @@ module.exports = {
 
         var self = this;
         request.get( options, function( err, res, body ) {
-            if ( err ) return self.fail( { 'error': err, 'body': body } );
-            return self.complete( JSON.parse( body ) );
+            var resdata = JSON.parse( body );
+
+            if ( err || !resdata.data ) return self.fail( { 'error': err, 'body': body } );
+            var results = [ ];
+            resdata.data.children.forEach( function( child ) {
+                results.push( {
+                    id:             child.data.id,
+                    author:         child.data.author,
+                    created_utc:    child.data.created_utc,
+                    domain:         child.data.domain,
+                    permalink:      child.data.permalink,
+                    score:          child.data.score,
+                    title:          child.data.title,
+                    selftext:       child.data.selftext,
+                    url:            child.data.url
+                })
+            } );
+            return self.complete( results );
         } );
     }
 };
