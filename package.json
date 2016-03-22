@@ -1,10 +1,10 @@
 {
   "name": "reddit-top-posts",
   "version": "0.0.1",
-  "description": "",
+  "description": "Get top posts from a subreddit",
   "main": "index.js",
-  "author": "Mike Friedman",
-  "license": "ISC",
+  "author": "Run Dexter, Inc",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "lodash": "^3.9.3",
